@@ -13,7 +13,7 @@
       apt:
         name: ntp
         state: present
-        update_cache: yes  # actually it is like apt update so that ntp can be installed in ubuntu
+        update_cache: yes # actually it is like apt update so that ntp can be installed in ubuntu
       when: ansible_distribution == "Ubuntu"
 
     - name: Start service on centos
