@@ -2,3 +2,7 @@ itadmin_credentials_itadmin.csv
 itadmin_credentials.csv
 itadmin_credentials_old.csv
 .gitignore
+ansibleadmin_accessKeys.csv
+client-key.pem
+control.pem
+jenkins-key.pem
