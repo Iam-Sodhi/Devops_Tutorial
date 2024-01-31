@@ -1,0 +1,37 @@
+- hosts: localhost
+  gather_facts: False
+  tasks:
+    - name: Create key pair # creating key pair
+      ec2_key:
+        name: sample
+        region: us-east-1
+      register: keyout
+
+    # - name: print key  # if you want to print your private key
+    #   debug:
+    #     var: keyout
+
+    - name: save key  # to store the private key somewhere
+      copy:
+        content: "{{keyout.key.private_key}}"
+        dest: ./sample.pem
+      when: keyout.changed==True  # it gives key only one time when created that's why
+
+    - name: start an instance
+      amazon.aws.ec2_instance:
+        name: "public-compute-instance"
+        key_name: "sample"
+        #vpc_subnet_id: subnet-5ca1ab1e
+        instance_type: t2.micro
+        security_group: default
+        #network:
+          #assign_public_ip: true
+        image_id: ami-0a3c3a20c09d6f377
+        exact_count: 1
+        region: us-east-1
+        tags:
+          Environment: Testing
+
+
+
+
