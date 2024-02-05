@@ -6,3 +6,4 @@ ansibleadmin_accessKeys.csv
 client-key.pem
 control.pem
 jenkins-key.pem
+docker-key.pem
